@@ -19,7 +19,7 @@ class CreateEventsTable extends Migration
             $table->string('name');
             $table->string('description');
             $table->dateTime('datetime');
-            $table->unsingedInteger('choir_id');
+            $table->unsignedInteger('choir_id');
             $table->unsignedInteger('image_url');
             $table->unsignedInteger('creator_id');
 
