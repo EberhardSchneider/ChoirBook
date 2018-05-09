@@ -19,8 +19,8 @@ class CreateTableAdminsChoirUser extends Migration
             
             $table->foreign('choir_id')
                 ->references('id')->on('choirs');
-            $table->foreign('choir_id')
-                ->references('id')->on('choirs');
+            $table->foreign('user_id')
+                ->references('id')->on('users');
         });
     }
 

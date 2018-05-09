@@ -19,11 +19,13 @@ class CreateEventsTable extends Migration
             $table->string('name');
             $table->string('description');
             $table->dateTime('datetime');
-            $table->string('image_url');
+            $table->unsignedInteger('image_url');
             $table->unsignedInteger('creator_id');
 
             $table->foreign('creator_id')
                 ->references('id')->on('users');
+            $table->foreign('image_url')
+                ->references('id')->on('images');
         });
     }
 

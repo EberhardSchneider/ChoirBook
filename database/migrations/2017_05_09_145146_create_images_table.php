@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateChoirsTable extends Migration
+class CreateImagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,10 @@ class CreateChoirsTable extends Migration
      */
     public function up()
     {
-        Schema::create('choirs', function (Blueprint $table) {
+        Schema::create('images', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->string('description');
-            $table->string('location_id')->nullable();
-            $table->unsignedInteger('image_url')->nullable();
             $table->timestamps();
-
-            $table->foreign('image_url')
-                ->references('id')->on('images');
+            $table->string('url');
         });
     }
 
@@ -33,6 +27,6 @@ class CreateChoirsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('choirs');
+        Schema::dropIfExists('images');
     }
 }
