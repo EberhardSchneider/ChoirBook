@@ -11,6 +11,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
+
+        $nChoirs = 10;
+
+        factory(App\Choir::class, $nChoirs)->create()->each(function ($c) {
+            
+        });
     }
 }
