@@ -26,4 +26,24 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function choirsMember() {
+        return $this->belongsToMany('App\Choir', 'members_choir_user');
+    }
+
+    public function choirsAdmin() {
+        return $this->belongsToMany('App\Choir', 'admin_choir_user');
+    }
+
+    public function events() {
+        return $this->hasMany('App\Event');
+    }
+
+    public function news() {
+        return $this->hasMany('App\News');
+    }
+
+    public function role() {
+        return $this->belongsTo('App\Role');
+    }
 }

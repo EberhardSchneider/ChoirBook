@@ -13,4 +13,12 @@ class Choir extends Model
     public function admin() {
         return $this->belongsToMany('App\User', 'admins_choir_user');
     }
+
+    public function events() {
+        return $this->hasMany('App\Event');
+    }
+
+    public function image() {
+        return $this->hasOne('App\Image');
+    }
 }
