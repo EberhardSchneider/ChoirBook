@@ -38,6 +38,17 @@ const store = new Vuex.Store({
 
 const Home = Vue.component('Home', require('./components/home/Index.vue'));
 
+const Test = {
+    template: `<div>Test</div>`
+};
+
+const Test1 = {
+    template: `<div>Hallo</div>`
+}
+
+const Test2 = {
+    template: `<div>Bla42</div>`
+}
 
 const routes = [{
         path: '/home',
@@ -45,7 +56,7 @@ const routes = [{
     },
     {
         path: '/my-account',
-        component: Home
+        component: Test
     },
     {
         path: '/logout',

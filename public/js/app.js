@@ -255,12 +255,24 @@ var store = new __WEBPACK_IMPORTED_MODULE_2_vuex__["a" /* default */].Store({
 
 var Home = Vue.component('Home', __webpack_require__(10));
 
+var Test = {
+    template: '<div>Test</div>'
+};
+
+var Test1 = {
+    template: '<div>Hallo</div>'
+};
+
+var Test2 = {
+    template: '<div>Bla42</div>'
+};
+
 var routes = [{
     path: '/home',
     component: Home
 }, {
     path: '/my-account',
-    component: Home
+    component: Test
 }, {
     path: '/logout',
     component: Home
@@ -32219,7 +32231,11 @@ var render = function() {
       _vm._v(" "),
       _c("v-toolbar", { attrs: { app: "" } }),
       _vm._v(" "),
-      _c("v-content", [_c("v-container", { attrs: { fluid: "" } })], 1),
+      _c(
+        "v-content",
+        [_c("v-container", { attrs: { fluid: "" } }, [_c("router-view")], 1)],
+        1
+      ),
       _vm._v(" "),
       _c("v-footer", { attrs: { app: "" } })
     ],
