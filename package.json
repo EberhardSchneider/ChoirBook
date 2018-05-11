@@ -16,10 +16,16 @@
         "browser-sync": "^2.24.4",
         "browser-sync-webpack-plugin": "2.0.1",
         "cross-env": "^5.1",
-        "jquery": "^3.2",
         "laravel-mix": "^2.0",
         "lodash": "^4.17.4",
         "popper.js": "^1.12",
         "vue": "^2.5.7"
+    },
+    "dependencies": {
+        "material-design-icons-iconfont": "^3.0.3",
+        "mdi": "^2.2.43",
+        "vue-router": "^3.0.1",
+        "vuetify": "^1.0.17",
+        "vuex": "^3.0.1"
     }
 }

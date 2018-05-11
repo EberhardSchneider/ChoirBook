@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Choir extends Model
 {
-    public function member() {
+    public function members() {
         return $this->belongsToMany('App\User', 'members_choir_user');
     }
 
-    public function admin() {
+    public function admins() {
         return $this->belongsToMany('App\User', 'admins_choir_user');
     }
 

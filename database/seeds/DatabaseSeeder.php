@@ -14,8 +14,26 @@ class DatabaseSeeder extends Seeder
 
         $nChoirs = 10;
 
-        factory(App\Choir::class, $nChoirs)->create()->each(function ($c) {
-            
+        factory(App\User::class, 200)
+            ->create()
+            ->each(function($user) {
+                factory(App\News::class, 1)->create(['creator_id' => $user->id]);
+            });
+
+        factory(App\Choir::class, $nChoirs)->create()->each(function ($choir) {
+            $choir->members()->attach(
+                App\User::all()->random(rand(10,20))->pluck('id')->toArray()
+            );
+            $choir->admins()->attach(
+                App\User::all()->random(rand(1,3))->pluck('id')->toArray()
+            );
+            factory(App\Event::class, rand(1,2))
+                ->create(['choir_id' => $choir->id])
+                ->each(function($event) use ($choir) {
+                    $event->creator_id = $choir->members()->get()->random(1)->pluck('id')[0];
+                    $event->save();
+                });
+
         });
     }
 }

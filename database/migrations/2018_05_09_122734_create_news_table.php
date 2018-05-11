@@ -17,7 +17,7 @@ class CreateNewsTable extends Migration
             $table->increments('id');
             $table->timestamps();
             $table->string('content');
-            $table->string('image_url');
+            $table->string('image_url')->nullable();
             $table->unsignedInteger('creator_id');
 
             $table->foreign('creator_id')

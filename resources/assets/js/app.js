@@ -1,13 +1,34 @@
-
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-require('./bootstrap');
-
 window.Vue = require('vue');
+
+import Vuetify from 'vuetify';
+import VueRouter from 'vue-router';
+import Vuex from 'vuex';
+
+Vue.use(Vuetify);
+Vue.use(VueRouter);
+Vue.use(Vuex);
+
+const store = new Vuex.Store({
+
+    state: {
+        activeScreenId: 0
+    },
+
+    mutations: {
+        changeScreenId(state, id) {
+            state.activeScreenId = id;
+        }
+    }
+
+});
+
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -15,8 +36,37 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('example-component', require('./components/ExampleComponent.vue'));
+const Home = Vue.component('Home', require('./components/home/Index.vue'));
+
+
+const routes = [{
+        path: '/home',
+        component: Home
+    },
+    {
+        path: '/my-account',
+        component: Home
+    },
+    {
+        path: '/logout',
+        component: Home
+    },
+];
+
+const router = new VueRouter(routes);
+
+Vue.component('toolbar', require('./components/Toolbar.vue'));
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    store,
+    router,
+    compnents: {
+        Home
+    },
+    template: `
+        <div class="app">
+            <home/>
+        </div>
+    `
 });

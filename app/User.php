@@ -32,7 +32,7 @@ class User extends Authenticatable
     }
 
     public function choirsAdmin() {
-        return $this->belongsToMany('App\Choir', 'admin_choir_user');
+        return $this->belongsToMany('App\Choir', 'admins_choir_user');
     }
 
     public function events() {
