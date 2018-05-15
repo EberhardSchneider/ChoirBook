@@ -6,28 +6,17 @@
 
 window.Vue = require('vue');
 
+import 'vuetify/dist/vuetify.min.css' // Ensure you are using css-loader
+
 import Vuetify from 'vuetify';
 import VueRouter from 'vue-router';
 import Vuex from 'vuex';
+import router from './routes.js';
 
 Vue.use(Vuetify);
-Vue.use(VueRouter);
-Vue.use(Vuex);
+// Vue.use(VueRouter);
 
-const store = new Vuex.Store({
-
-    state: {
-        activeScreenId: 0
-    },
-
-    mutations: {
-        changeScreenId(state, id) {
-            state.activeScreenId = id;
-        }
-    }
-
-});
-
+import store from './store';
 
 
 /**
@@ -36,48 +25,24 @@ const store = new Vuex.Store({
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-const Home = Vue.component('Home', require('./components/home/Index.vue'));
+const Index = Vue.component('index', require('./components/Index.vue'));
 
-const Test = {
-    template: `<div>Test</div>`
-};
 
-const Test1 = {
-    template: `<div>Hallo</div>`
-}
-
-const Test2 = {
-    template: `<div>Bla42</div>`
-}
-
-const routes = [{
-        path: '/home',
-        component: Home
-    },
-    {
-        path: '/my-account',
-        component: Test
-    },
-    {
-        path: '/logout',
-        component: Home
-    },
-];
-
-const router = new VueRouter(routes);
-
-Vue.component('toolbar', require('./components/Toolbar.vue'));
+// Vue.component('toolbar', require('./components/Toolbar.vue'));
 
 const app = new Vue({
     el: '#app',
     store,
     router,
-    compnents: {
-        Home
+    components: {
+        Index
     },
     template: `
         <div class="app">
-            <home/>
+            <index/>
         </div>
-    `
+    `,
+    created: function () {
+        store.commit('init');
+    }
 });
