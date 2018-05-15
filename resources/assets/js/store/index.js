@@ -11,19 +11,31 @@ export default new Vuex.Store({
         userId: -1,
         choirsMember: [],
         choirsAdmin: [],
+        news: [],
         loading: false
     },
 
     mutations: {
         updateChoirsMember(state, choirs) {
             console.log('Mutate choirs member.');
+            console.log({
+                choirs
+            });
             state.choirsMember = choirs;
+        },
+        updateUserId(state, id) {
+            state.userId = id;
         },
         setLoading(state, loading) {
             state.loading = loading;
         },
-        init() {
-            this.dispatch('getAllChoirsMember')
+        init(state) {
+            const store = window.store;
+
+            state.userId = store.userId;
+            state.choirsMember = store.choirsMember;
+            state.choirsAdmin = store.choirsAdmin;
+            state.news = store.news;
         }
     },
 
@@ -31,24 +43,10 @@ export default new Vuex.Store({
 
     actions: {
         getAllChoirsMember(context) {
-            const state = context.state;
-            if (state.userId === -1) {
-                axios.get('/user/id')
-                    .then(id => {
-                        state.userId = id;
-                        axios.get('/choirs/member/' + state.userId)
-                            .then(data => {
-                                state.choirsMember = data.choirs;
-                            });
-                    })
-
-            } else {
-                axios.get('/choirs/member/' + state.userId)
-                    .then(data => {
-                        state.choirsMember = data.choirs;
-                    });
-            }
-
+            axios.get('/choirs/member')
+                .then(data => {
+                    context.commit('updateChoirsMember', data.data.choirs);
+                });
         },
 
         getAllChoirAdmin() {

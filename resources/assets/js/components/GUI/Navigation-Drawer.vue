@@ -12,7 +12,7 @@
     <v-divider></v-divider>
     <v-list dense class="pt-0">
       <router-link v-for="item in items" :key="item.title" :to="item.link">
-          <v-list-tile>
+          <v-list-tile @click="">
                 <v-list-tile-action>
                   <v-icon>{{ item.icon }}</v-icon>
                 </v-list-tile-action>
@@ -22,6 +22,7 @@
           </v-list-tile>
       </router-link>
     </v-list>
+ 
   </v-navigation-drawer>
 </template>
 
@@ -36,6 +37,11 @@ export default {
       ],
       right: null
     };
+  },
+  computed: {
+    choirsMember() {
+      return this.$store.state.choirsMember;
+    }
   }
 };
 </script>

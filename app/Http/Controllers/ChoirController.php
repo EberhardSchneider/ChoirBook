@@ -13,10 +13,7 @@ class ChoirController extends Controller
         $user = Auth::user();
         $choirs = [];
         
-        if ($user !== null) {
-            $choirs = $user->members()->toArray();
-        }
-
-        return response()->json([ 'choirs' => $choirs]);
+        $choirs = $user->choirsMember()->get()->toArray();
+        return response()->json(['choirs' => $choirs]);
     }
 }

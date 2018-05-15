@@ -3,6 +3,12 @@
 </template>
 
 <script>
-export default {};
+export default {
+  computed: {
+    news() {
+      return this.$store.news;
+    }
+  }
+};
 </script>
 

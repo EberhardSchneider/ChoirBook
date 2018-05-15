@@ -1,6 +1,7 @@
 <template>
     <v-app>
      <navigation-drawer/>
+     <navigation-drawer-right/>
     <v-toolbar app></v-toolbar>
     <v-content>
         <v-container fluid>
@@ -13,6 +14,11 @@
 
 <script>
 Vue.component("navigation-drawer", require("./GUI/Navigation-Drawer"));
+Vue.component(
+  "navigation-drawer-right",
+  require("./GUI/Navigation-Drawer-Right")
+);
+
 export default {
   data() {
     return {

@@ -14,7 +14,7 @@ import Vuex from 'vuex';
 import router from './routes.js';
 
 Vue.use(Vuetify);
-// Vue.use(VueRouter);
+Vue.use(VueRouter);
 
 import store from './store';
 
