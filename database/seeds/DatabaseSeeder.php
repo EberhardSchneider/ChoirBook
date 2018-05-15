@@ -30,7 +30,7 @@ class DatabaseSeeder extends Seeder
             factory(App\Event::class, rand(1,2))
                 ->create(['choir_id' => $choir->id])
                 ->each(function($event) use ($choir) {
-                    $event->user_id_id = $choir->members()->get()->random(1)->pluck('id')[0];
+                    $event->user_id = $choir->members()->get()->random(1)->pluck('id')[0];
                     $event->save();
                 });
 

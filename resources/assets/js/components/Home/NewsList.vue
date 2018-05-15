@@ -8,12 +8,16 @@
             <v-btn icon><v-icon>search</v-icon></v-btn>
         </v-toolbar>
         <v-card>
-            <v-container fluid style="min-height: 0;" grid-list-kg>
+            <v-container fluid style="min-height: 0;" class="" grid-list-kg>
                 <v-layout row wrap>
-                    <v-flex xs12 v-for="news in getNews" :key="news.id">
+                    <v-flex xs12 v-for="news in getNews" :key="news.id" class="mt-3">
                         <v-card color="blue-grey darken-2" class="white--text">
                             <v-card-title primary-title>
-                                <div class="headline">{{ news.content }}</div>
+                                <div>
+                                    <div class="headline">{{ news.title }}</div>
+                                    <div>{{ news.content }}</div>
+                                    <span class="grey--text">{{ news.created_at }}</span>
+                                </div>
                             </v-card-title>
                         </v-card>
                     </v-flex>
@@ -25,6 +29,13 @@
 </template>
 
 <script>
-export default {};
+export default {
+    computed: {
+        getNews() {
+            console.log(this.$store);
+            return this.$store.state.news;
+        }
+    }
+};
 </script>
 

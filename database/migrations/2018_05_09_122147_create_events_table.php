@@ -21,11 +21,11 @@ class CreateEventsTable extends Migration
             $table->dateTime('datetime');
             $table->unsignedInteger('choir_id');
             $table->unsignedInteger('image_url')->nullable();
-            $table->unsignedInteger('creator_id')->nullable();
+            $table->unsignedInteger('user_id')->nullable();
 
             $table->foreign('choir_id')
                 ->references('id')->on('choirs');
-            $table->foreign('creator_id')
+            $table->foreign('user_id')
                 ->references('id')->on('users');
             $table->foreign('image_url')
                 ->references('id')->on('images');
