@@ -16,7 +16,7 @@
                                 <div>
                                     <div class="headline">{{ news.title }}</div>
                                     <div>{{ news.content }}</div>
-                                    <span class="grey--text">{{ news.created_at }}</span>
+                                    <span class="grey--text">{{ formatDate( news.created_at ) }}</span>
                                 </div>
                             </v-card-title>
                         </v-card>
@@ -30,12 +30,23 @@
 
 <script>
 export default {
-    computed: {
-        getNews() {
-            console.log(this.$store);
-            return this.$store.state.news;
-        }
+  computed: {
+    getNews() {
+      console.log(this.$store);
+      return this.$store.state.news;
     }
+  },
+  methods: {
+    formatDate(date) {
+      var options = {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric"
+      };
+      return new Date(date).toLocaleDateString("de-DE", options);
+    }
+  }
 };
 </script>
 

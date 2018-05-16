@@ -3,13 +3,14 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class News extends Model
 {
 
-    protected $dateFormat = 'l jS \\of F Y h:i:s A';
-
-
+    // public function getCreatedAtAttribute($value) {
+    //     return new Carbon($value);
+    // }
 
     // relationships
     public function comments() {
