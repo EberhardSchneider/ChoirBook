@@ -1,9 +1,9 @@
 <template>
   <v-navigation-drawer fixed right app>
     <v-card>
-      <v-list two-line subheader class="pt-0">
+      <v-list subheader class="pt-0">
         <v-subheader inset>My Choirs</v-subheader>
-        <v-list-tile v-for="choir in choirsMember" :key="choir.id">
+        <v-list-tile v-for="choir in choirsMember" :key="choir.id" ripple>
           <v-list-tile-action>
             <v-icon>arrow_right</v-icon>
           </v-list-tile-action>

@@ -17,6 +17,8 @@ use Illuminate\Support\Facades\Auth;
 
 Auth::routes();
 
+Route::get('/logout', 'Auth\LoginController@logout');
+
 // logged in ____________________________
 
 Route::group(['middleware' => ['auth']], function () {

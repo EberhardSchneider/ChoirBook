@@ -27,8 +27,21 @@ import store from './store';
 
 const Index = Vue.component('index', require('./components/Index.vue'));
 
+// define filters
 
-// Vue.component('toolbar', require('./components/Toolbar.vue'));
+Vue.filter('formatDate', function (date) {
+    var options = {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric"
+    };
+    return new Date(date).toLocaleDateString("de-DE", options);
+})
+
+
+// instanciate Vue object
+
 
 const app = new Vue({
     el: '#app',

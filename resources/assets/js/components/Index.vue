@@ -19,16 +19,6 @@ Vue.component(
   require("./GUI/Navigation-Drawer-Right")
 );
 
-export default {
-  data() {
-    return {
-      items: [
-        { title: "Home", icon: "home", link: "/home" },
-        { title: "My account", icon: "account_circle", link: "my-account" },
-        { title: "Logout", icon: "close", link: "/logout" }
-      ]
-    };
-  }
-};
+export default {};
 </script>
 

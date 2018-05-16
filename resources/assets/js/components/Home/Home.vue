@@ -4,16 +4,11 @@
 </template>
 
 <script>
-import Vue from 'vue';
+import Vue from "vue";
 
-Vue.component('news-list', require("./NewsList"));
+Vue.component("news-list", require("./NewsList"));
 export default {
-   
-  computed: {
-    news() {
-      return this.$store.news;
-    }
-  }
+  computed: {}
 };
 </script>
 
