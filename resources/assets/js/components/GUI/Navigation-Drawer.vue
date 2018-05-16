@@ -50,8 +50,8 @@ export default {
   data() {
     return {
       items: [
-        { title: "HOME", icon: "home", link: "home" },
-        { title: "MY ACCOUNT", icon: "account_circle", link: "my-account" },
+        { title: "HOME", icon: "home", link: "/home" },
+        { title: "MY ACCOUNT", icon: "account_circle", link: "/my-account" },
         { title: "MY FRIENDS", icon: "person", link: "/my-friends" },
         { title: "MY CHOIRS", icon: "group", link: "/my-choirs" }
       ],

@@ -18,6 +18,15 @@
                                     <div>{{ choir.description }}</div>
                                 </div>
                             </v-card-title>
+                            <a :href="getEditChoirUrl(choir)">
+                                <v-card-actions v-if="isUserAdmin(choir.id)">
+                                    <v-spacer></v-spacer>
+                                    ADMIN
+                                    <v-btn icon>
+                                        <v-icon large light color="white">edit</v-icon>
+                                    </v-btn>
+                                </v-card-actions>
+                            </a>
                         </v-card>
                     </v-flex>
                 </v-layout>
@@ -38,9 +47,15 @@ export default {
   },
   computed: {
     getChoirs() {
-      console.log("GetChoirs:");
-      console.log(self.default.props.type);
       return this.$store.state.choirsMember;
+    }
+  },
+  methods: {
+    isUserAdmin(choirId) {
+      return this.$store.getters.isUserAdmin(choirId);
+    },
+    getEditChoirUrl: choir => {
+      return "/edit-choir/" + choir.id;
     }
   }
 };

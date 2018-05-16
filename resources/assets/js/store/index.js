@@ -16,20 +16,20 @@ export default new Vuex.Store({
     },
 
     mutations: {
-        updateChoirsMember(state, choirs) {
+        updateChoirsMember: (state, choirs) => {
             console.log('Mutate choirs member.');
             console.log({
                 choirs
             });
             state.choirsMember = choirs;
         },
-        updateUserId(state, id) {
+        updateUserId: (state, id) => {
             state.userId = id;
         },
-        setLoading(state, loading) {
+        setLoading: (state, loading) => {
             state.loading = loading;
         },
-        init(state) {
+        init: state => {
             const store = window.store;
 
             state.userId = store.userId;
@@ -39,10 +39,14 @@ export default new Vuex.Store({
         }
     },
 
-    getters: {},
+    getters: {
+        isUserAdmin: state => choirId => {
+            return state.choirsAdmin.filter(choir => choir.id === choirId).length > 0;
+        }
+    },
 
     actions: {
-        getAllChoirsMember(context) {
+        getAllChoirsMember: context => {
             axios.get('/choirs/member')
                 .then(data => {
                     context.commit('updateChoirsMember', data.data.choirs);
