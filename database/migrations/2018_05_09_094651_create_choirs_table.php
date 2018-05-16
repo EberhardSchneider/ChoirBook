@@ -18,10 +18,10 @@ class CreateChoirsTable extends Migration
             $table->string('name');
             $table->string('description');
             $table->string('location_id')->nullable();
-            $table->unsignedInteger('image_url')->nullable();
+            $table->unsignedInteger('image_id')->nullable();
             $table->timestamps();
 
-            $table->foreign('image_url')
+            $table->foreign('image_id')
                 ->references('id')->on('images');
         });
     }

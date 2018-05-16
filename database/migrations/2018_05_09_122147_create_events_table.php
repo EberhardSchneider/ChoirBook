@@ -20,14 +20,14 @@ class CreateEventsTable extends Migration
             $table->string('description');
             $table->dateTime('datetime');
             $table->unsignedInteger('choir_id');
-            $table->unsignedInteger('image_url')->nullable();
+            $table->unsignedInteger('image_id')->nullable();
             $table->unsignedInteger('user_id')->nullable();
 
             $table->foreign('choir_id')
                 ->references('id')->on('choirs');
             $table->foreign('user_id')
                 ->references('id')->on('users');
-            $table->foreign('image_url')
+            $table->foreign('image_id')
                 ->references('id')->on('images');
         });
     }
