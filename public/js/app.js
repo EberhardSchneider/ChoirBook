@@ -35423,8 +35423,25 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-var _this = this;
-
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -35436,8 +35453,7 @@ var _this = this;
 /* harmony default export */ __webpack_exports__["default"] = ({
   methods: {
     isCreateNew: function isCreateNew() {
-      console.log(_this.$route.params);
-      return _this.$route.params.id === "new";
+      return this.$route.params.id === "new";
     }
   }
 });
@@ -35450,9 +35466,54 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm.isCreateNew()
-    ? _c("h3", [_vm._v("Create new Choir")])
-    : _c("h3", [_vm._v("Edit Choir")])
+  return _c(
+    "div",
+    [
+      _vm.isCreateNew()
+        ? _c("h3", [_vm._v("Create new Choir")])
+        : _c("h3", [_vm._v("Edit Choir")]),
+      _vm._v(" "),
+      _c(
+        "v-form",
+        [
+          _c("v-text-field", {
+            attrs: { rules: _vm.nameRules, label: "Name", required: "" },
+            model: {
+              value: _vm.name,
+              callback: function($$v) {
+                _vm.name = $$v
+              },
+              expression: "name"
+            }
+          }),
+          _vm._v(" "),
+          _c("v-text-field", {
+            attrs: { label: "Beschreibung" },
+            model: {
+              value: _vm.description,
+              callback: function($$v) {
+                _vm.description = $$v
+              },
+              expression: "description"
+            }
+          }),
+          _vm._v(" "),
+          _c("v-text-field", {
+            attrs: { label: "Ort", required: "" },
+            model: {
+              value: _vm.location,
+              callback: function($$v) {
+                _vm.location = $$v
+              },
+              expression: "location"
+            }
+          })
+        ],
+        1
+      )
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -36491,7 +36552,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 Vue.component("navigation-drawer", __webpack_require__(70));
 Vue.component("navigation-drawer-right", __webpack_require__(75));
@@ -36932,8 +36992,6 @@ var render = function() {
     "v-app",
     [
       _c("navigation-drawer"),
-      _vm._v(" "),
-      _c("navigation-drawer-right"),
       _vm._v(" "),
       _c("v-toolbar", { attrs: { app: "" } }),
       _vm._v(" "),

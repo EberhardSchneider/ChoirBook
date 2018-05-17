@@ -1,7 +1,6 @@
 <template>
     <v-app>
      <navigation-drawer/>
-     <navigation-drawer-right/>
     <v-toolbar app></v-toolbar>
     <v-content>
         <v-container fluid>
