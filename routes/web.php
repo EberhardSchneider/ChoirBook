@@ -28,6 +28,10 @@ Route::group(['middleware' => ['auth']], function () {
         return response()->json(['id' => Auth::id()]);
     });
 
+    Route::post('/choirs/edit/{choir}', 'ChoirController@edit');
+    Route::post('/choirs/create', 'ChoirController@create');
+    
+
 
 
     Route::get('/{vue_capture?}', 'HomeController@home')->where('vue_capture', '[\/\w\.-]*');

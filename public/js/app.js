@@ -35423,6 +35423,12 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
+//
+//
+//
+//
 //
 //
 //
@@ -35450,10 +35456,49 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    var data = { name: "", description: "", location: "", create: true };
+    var choirId = parseInt(this.$route.params.id);
+    var choir = this.$store.state.choirsMember.find(function (c) {
+      return c.id === choirId;
+    });
+    console.log(choir);
+
+    if (choir) {
+      data = {
+        name: choir.name,
+        description: choir.description,
+        location: choir.location,
+        create: false,
+        csrf: document.querySelector('meta[name="csrf-token"]').getAttribute("content")
+      };
+    }
+
+    return data;
+  },
+
+
   methods: {
     isCreateNew: function isCreateNew() {
       return this.$route.params.id === "new";
+    },
+
+    submit: function submit() {
+      var id = this.$route.params.id;
+      var url = "/choir/create";
+      if (id !== "new") {
+        url = "/choir/edit" + "/" + id;
+      }
+      console.log(id);
+      if (this.$refs.form.validate) {
+        __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(url, {
+          name: this.name,
+          description: this.description,
+          location: this.location
+        });
+      }
     }
   }
 });
@@ -35475,9 +35520,24 @@ var render = function() {
       _vm._v(" "),
       _c(
         "v-form",
+        {
+          ref: "form",
+          model: {
+            value: _vm.valid,
+            callback: function($$v) {
+              _vm.valid = $$v
+            },
+            expression: "valid"
+          }
+        },
         [
+          _c("input", {
+            attrs: { type: "hidden" },
+            domProps: { value: _vm.csrf }
+          }),
+          _vm._v(" "),
           _c("v-text-field", {
-            attrs: { rules: _vm.nameRules, label: "Name", required: "" },
+            attrs: { label: "Name", required: "" },
             model: {
               value: _vm.name,
               callback: function($$v) {
@@ -35507,7 +35567,13 @@ var render = function() {
               },
               expression: "location"
             }
-          })
+          }),
+          _vm._v(" "),
+          _c(
+            "v-btn",
+            { attrs: { disabled: !_vm.valid }, on: { click: _vm.submit } },
+            [_vm._v("submit")]
+          )
         ],
         1
       )
