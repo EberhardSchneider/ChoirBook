@@ -14,7 +14,6 @@
         ></v-text-field>
         <v-text-field
           v-model="description"
-          @input="validateForm()"
           label="Beschreibung"
         ></v-text-field>
         <v-text-field
@@ -23,6 +22,14 @@
           :rules="locationRules"
           @input="validateForm()"
           required
+        ></v-text-field>
+          <v-text-field
+          v-model="rehearsalTimes"
+          label="Probenzeiten"
+        ></v-text-field>
+         <v-text-field
+          v-model="rehearsalLocation"
+          label="Probenort(e)"
         ></v-text-field>
 
         <v-btn
@@ -41,6 +48,8 @@ export default {
       name: "",
       description: "",
       location: "",
+      rehearsalTimes: "",
+      rehearsalLocation: "",
       create: true,
       csrf: document
         .querySelector('meta[name="csrf-token"]')
@@ -57,7 +66,9 @@ export default {
         ...data,
         name: choir.name,
         description: choir.description,
-        location: choir.location_id
+        location: choir.location_id,
+        rehearsalTimes: choir.rehearsal_times,
+        rehearsalLocation: choir.rehearsal_location
       };
     }
 
@@ -87,7 +98,9 @@ export default {
           .post(url, {
             name: this.name,
             description: this.description,
-            location: this.location
+            location: this.location,
+            rehearsal_times: this.rehearsalTimes,
+            rehearsal_location: this.rehearsalLocation
           })
           .then(response => {
             this.$store.dispatch("getChoirs");

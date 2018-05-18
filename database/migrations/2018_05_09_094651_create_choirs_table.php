@@ -17,6 +17,8 @@ class CreateChoirsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('description');
+            $table->string('rehearsal_times')->nullable();
+            $table->string('rehearsal_location')->nullable();
             $table->string('location_id')->nullable();
             $table->unsignedInteger('image_id')->nullable();
             $table->timestamps();

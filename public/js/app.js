@@ -36913,6 +36913,13 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -36921,6 +36928,8 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
       name: "",
       description: "",
       location: "",
+      rehearsalTimes: "",
+      rehearsalLocation: "",
       create: true,
       csrf: document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
       nameRules: [function (v) {
@@ -36938,7 +36947,9 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
       data = _extends({}, data, {
         name: choir.name,
         description: choir.description,
-        location: choir.location_id
+        location: choir.location_id,
+        rehearsalTimes: choir.rehearsal_times,
+        rehearsalLocation: choir.rehearsal_location
       });
     }
 
@@ -36970,7 +36981,9 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
         __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(url, {
           name: this.name,
           description: this.description,
-          location: this.location
+          location: this.location,
+          rehearsal_times: this.rehearsalTimes,
+          rehearsal_location: this.rehearsalLocation
         }).then(function (response) {
           _this.$store.dispatch("getChoirs");
           _this.$router.push("/store-success");
@@ -37035,11 +37048,6 @@ var render = function() {
           _vm._v(" "),
           _c("v-text-field", {
             attrs: { label: "Beschreibung" },
-            on: {
-              input: function($event) {
-                _vm.validateForm()
-              }
-            },
             model: {
               value: _vm.description,
               callback: function($$v) {
@@ -37062,6 +37070,28 @@ var render = function() {
                 _vm.location = $$v
               },
               expression: "location"
+            }
+          }),
+          _vm._v(" "),
+          _c("v-text-field", {
+            attrs: { label: "Probenzeiten" },
+            model: {
+              value: _vm.rehearsalTimes,
+              callback: function($$v) {
+                _vm.rehearsalTimes = $$v
+              },
+              expression: "rehearsalTimes"
+            }
+          }),
+          _vm._v(" "),
+          _c("v-text-field", {
+            attrs: { label: "Probenort(e)" },
+            model: {
+              value: _vm.rehearsalLocation,
+              callback: function($$v) {
+                _vm.rehearsalLocation = $$v
+              },
+              expression: "rehearsalLocation"
             }
           }),
           _vm._v(" "),
