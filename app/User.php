@@ -35,6 +35,22 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Choir', 'admins_choir_user');
     }
 
+    public function friendshipRequestsByMe() {
+        return $this->belongstoMany('App\User', 'users_users_requests', 'user1_id', 'user2_id');
+    }
+
+    public function friendshipRequestsToMe() {
+        return $this->belongsToMany('App\User', 'users_users_requests', 'user2_id', 'user1_id');
+    }
+
+    public function friends() {
+        // be sure to enter friendships symetrical in table: 
+        // every friendship has two entries (a,b) and (b,a)
+        return $this->belongsToMany('App\User', 'users_users_friendships', 'user1_id', 'user2_id');
+    }
+
+
+
     public function events() {
         return $this->hasMany('App\Event');
     }
@@ -45,12 +61,5 @@ class User extends Authenticatable
 
     public function role() {
         return $this->belongsTo('App\Role');
-    }
-
-    public function choirsMemberWithKey() {
-        return choirsMember()
-            ->get()
-            ->mapWithKeys(function($c) { return [ $c.id => $c ]; })
-            ->toArray();
     }
 }

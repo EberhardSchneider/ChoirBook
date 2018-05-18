@@ -27,6 +27,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/choirs/admin', 'ChoirController@getAdmin');
 
     Route::get('/choir/admins', 'UserController@getAdminsOfChoirs');
+    Route::get('/admins', 'UserController@getAdminsList');
     
     Route::get('/user/id', function() {
         return response()->json(['id' => Auth::id()]);

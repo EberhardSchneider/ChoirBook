@@ -16,7 +16,7 @@ class CreateChoirsTable extends Migration
         Schema::create('choirs', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('description');
+            $table->string('description')->nullable();
             $table->string('rehearsal_times')->nullable();
             $table->string('rehearsal_location')->nullable();
             $table->string('location_id')->nullable();

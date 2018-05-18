@@ -103,7 +103,7 @@ export default {
             rehearsal_location: this.rehearsalLocation
           })
           .then(response => {
-            this.$store.dispatch("getChoirs");
+            this.$store.dispatch("updateChoirs");
             this.$router.push("/store-success");
           });
       }

@@ -13,7 +13,7 @@ class CreateUsersUsersFriendshipTable extends Migration
      */
     public function up()
     {
-        Schema::create('users_users_friendship', function (Blueprint $table) {
+        Schema::create('users_users_friendships', function (Blueprint $table) {
             $table->unsignedInteger('user1_id');
             $table->unsignedInteger('user2_id');
             $table->increments('id');

@@ -36024,6 +36024,11 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
             state.choirsAdmin = choirs;
             console.log(state);
         },
+        updateAdmins: function updateAdmins(state, admins) {
+            console.log('Mutate admin list.');
+            state.admins = admins;
+            console.log(state);
+        },
         updateUserId: function updateUserId(state, id) {
             state.userId = id;
         },
@@ -36056,12 +36061,15 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
 
     actions: {
 
-        getChoirs: function getChoirs(context) {
+        updateChoirs: function updateChoirs(context) {
             __WEBPACK_IMPORTED_MODULE_2_axios___default.a.get('/choirs/member').then(function (response) {
                 context.commit('updateChoirsMember', response.data.choirs);
             });
             __WEBPACK_IMPORTED_MODULE_2_axios___default.a.get('/choirs/admin').then(function (response) {
                 context.commit('updateChoirsAdmin', response.data.choirs);
+            });
+            __WEBPACK_IMPORTED_MODULE_2_axios___default.a.get('/admins').then(function (response) {
+                context.commit('updateAdmins', response.data);
             });
         },
 
@@ -36985,7 +36993,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
           rehearsal_times: this.rehearsalTimes,
           rehearsal_location: this.rehearsalLocation
         }).then(function (response) {
-          _this.$store.dispatch("getChoirs");
+          _this.$store.dispatch("updateChoirs");
           _this.$router.push("/store-success");
         });
       }

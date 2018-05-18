@@ -27,6 +27,11 @@ export default new Vuex.Store({
             state.choirsAdmin = choirs;
             console.log(state);
         },
+        updateAdmins: (state, admins) => {
+            console.log('Mutate admin list.');
+            state.admins = admins;
+            console.log(state);
+        },
         updateUserId: (state, id) => {
             state.userId = id;
         },
@@ -55,7 +60,7 @@ export default new Vuex.Store({
 
     actions: {
 
-        getChoirs: context => {
+        updateChoirs: context => {
             axios.get('/choirs/member')
                 .then(response => {
                     context.commit('updateChoirsMember', response.data.choirs);
@@ -64,6 +69,10 @@ export default new Vuex.Store({
                 .then(response => {
                     context.commit('updateChoirsAdmin', response.data.choirs);
                 });
+            axios.get('/admins')
+                .then(response => {
+                    context.commit('updateAdmins', response.data);
+                })
         },
 
         getAdmins() {

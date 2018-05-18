@@ -21,4 +21,17 @@ class UserController extends Controller
 
         return response()->json($admins);
     }
+
+    public function getAdminsList() {
+        $choirs = Auth::user()->choirsMember()->get();
+
+        $admins = $choirs->mapWithKeys(function($c) {
+            return [ $c->id => $c->admins()->get()->mapWithKeys(function($admin) {
+                        return [ $admin->id => $admin->name ];
+                    })
+                ];
+        });
+
+        return response()->json($admins);
+    }
 }
