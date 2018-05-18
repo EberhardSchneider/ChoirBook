@@ -32,10 +32,24 @@ class HomeController extends Controller
         
         $user = Auth::user();
 
+        $choirs = Auth::user()->choirsMember()->get();
+
+        $admins = $choirs->mapWithKeys(function($c) {
+            return [ $c->id => $c->admins()->get()->mapWithKeys(function($admin) {
+                        return [ $admin->id => $admin->name ];
+                    })
+                ];
+        });
+
+        $choirsWithKeys = $choirs
+            ->mapWithKeys(function($c) { return [ $c->id => $c ]; })
+            ->toArray();
+
         $store = [
             'userId' => $user->id,
-            'choirsMember' => $user->choirsMember()->get()->toArray(),
+            'choirsMember' => $choirsWithKeys,
             'choirsAdmin' => $user->choirsAdmin()->get()->toArray(),
+            'admins' => $admins,
             'news' => $user->news()->get()->toArray()
         ];
 

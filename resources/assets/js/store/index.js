@@ -11,6 +11,7 @@ export default new Vuex.Store({
         userId: -1,
         choirsMember: [],
         choirsAdmin: [],
+        admins: [],
         news: [],
         loading: false
     },
@@ -18,10 +19,13 @@ export default new Vuex.Store({
     mutations: {
         updateChoirsMember: (state, choirs) => {
             console.log('Mutate choirs member.');
-            console.log({
-                choirs
-            });
             state.choirsMember = choirs;
+            console.log(state);
+        },
+        updateChoirsAdmin: (state, choirs) => {
+            console.log('Mutate choirs admin.');
+            state.choirsAdmin = choirs;
+            console.log(state);
         },
         updateUserId: (state, id) => {
             state.userId = id;
@@ -35,6 +39,7 @@ export default new Vuex.Store({
             state.userId = store.userId;
             state.choirsMember = store.choirsMember;
             state.choirsAdmin = store.choirsAdmin;
+            state.admins = store.admins;
             state.news = store.news;
         }
     },
@@ -42,18 +47,38 @@ export default new Vuex.Store({
     getters: {
         isUserAdmin: state => choirId => {
             return state.choirsAdmin.filter(choir => choir.id === choirId).length > 0;
+        },
+        getAdmins: state => choirId => {
+
         }
     },
 
     actions: {
-        getAllChoirsMember: context => {
+
+        getChoirs: context => {
             axios.get('/choirs/member')
-                .then(data => {
-                    context.commit('updateChoirsMember', data.data.choirs);
+                .then(response => {
+                    context.commit('updateChoirsMember', response.data.choirs);
+                });
+            axios.get('/choirs/admin')
+                .then(response => {
+                    context.commit('updateChoirsAdmin', response.data.choirs);
                 });
         },
 
-        getAllChoirAdmin() {
+        getAdmins() {
+            this.state.choirsMember.map(
+                choir => {
+                    axios.get('/choir/admins')
+                        .then(response => {
+                            console.log(response);
+                        });
+                }
+            );
+
+        },
+
+        getChoirsAdmin() {
 
         },
 

@@ -11,9 +11,13 @@ class ChoirController extends Controller
 {
     public function getMember() {
         $user = Auth::user();
-        $choirs = [];
-        
-        $choirs = $user->choirsMember()->get()->toArray();
+        $choirs = $user->allAdmins();
+        return response()->json(['choirs' => $choirs]);
+    }
+
+    public function getAdmin() {
+        $user = Auth::user();
+        $choirs = $user->choirsAdmin()->get()->toArray();
         return response()->json(['choirs' => $choirs]);
     }
 
@@ -24,13 +28,24 @@ class ChoirController extends Controller
 
         $choir = new Choir;
         $choir->name = $name;
-        $choir->description = description;
-        $choir->location = location;
+        $choir->description = $description;
+        $choir->location_id = $location;
 
         $choir->save();
 
         $user = Auth::user();
         $user->choirsMember()->attach($choir->id);
         $user->choirsAdmin()->attach($choir->id);
+    }
+
+    public function edit(Request $request, Choir $choir) {
+        $name = $request->input('name');
+        $description = $request->input('description');
+        $location = $request->input('location');
+
+        $choir->name = $name;
+        $choir->description = $description;
+        $choir->location_id = $location;
+        $choir->save();
     }
 }

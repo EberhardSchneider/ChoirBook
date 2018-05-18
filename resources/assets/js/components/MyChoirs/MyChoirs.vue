@@ -2,7 +2,7 @@
 <template>
 <div>
    <choirs-list type="member"/>
-    <router-link to="/edit-choir/new">
+    <router-link to="choirs/edit/new">
         <v-card id="group-add-link" class="mt-4 pl-4 py-3">
             <v-container d-flex justify-center>
                 <div class="d-inline">
@@ -29,7 +29,7 @@
 <script>
 import Vue from "vue";
 
-Vue.component("choirs-list", require("./ChoirsList"));
+Vue.component("choirs-list", require("./List"));
 export default {
   computed: {}
 };

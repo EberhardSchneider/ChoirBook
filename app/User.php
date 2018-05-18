@@ -46,4 +46,11 @@ class User extends Authenticatable
     public function role() {
         return $this->belongsTo('App\Role');
     }
+
+    public function choirsMemberWithKey() {
+        return choirsMember()
+            ->get()
+            ->mapWithKeys(function($c) { return [ $c.id => $c ]; })
+            ->toArray();
+    }
 }

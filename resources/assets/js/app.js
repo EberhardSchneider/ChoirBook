@@ -11,6 +11,8 @@ import 'vuetify/dist/vuetify.min.css' // Ensure you are using css-loader
 import Vuetify from 'vuetify';
 import VueRouter from 'vue-router';
 import Vuex from 'vuex';
+import axios from 'axios';
+
 import router from './routes.js';
 
 Vue.use(Vuetify);
@@ -18,6 +20,8 @@ Vue.use(VueRouter);
 
 import store from './store';
 
+
+axios.defaults.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
